@@ -43,7 +43,12 @@ class Selective_Refresh {
 		}
 
 		// Get an array of all fields.
-		$fields = Kirki::$fields;
+		$fields = [];
+
+		// Compatibility with v3 API.
+		if ( class_exists( '\Kirki\Compatibility\Kirki' ) ) {
+			$fields = \Kirki\Compatibility\Kirki::$fields;
+		}
 
 		// Start parsing the fields.
 		foreach ( $fields as $field ) {
